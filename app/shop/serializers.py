@@ -1,5 +1,6 @@
 from drf_writable_nested import WritableNestedModelSerializer
 from rest_framework.serializers import ModelSerializer
+from datetime import datetime
 
 from shop.models import Product, ProductOption, Tag
 
@@ -28,10 +29,12 @@ class ProductSerializers(WritableNestedModelSerializer):
         return super().create(validated_data)
 
     def update(self, instance, validated_data):
+        start = datetime.now()
         data = self.context.get('request').data
 
         # Product option
         option_pk_list = []
+        option_update_bulk_list = []
         for option in data['option_set']:
             if option.get('pk'):
                 option_pk_list.append(option['pk'])
@@ -43,7 +46,8 @@ class ProductSerializers(WritableNestedModelSerializer):
                 ins.save()
             else:
                 # bulk create
-                created_option = ProductOption.objects.create(name=option['name'], price=option['price'], product=instance)
+                created_option = ProductOption.objects.create(name=option['name'], price=option['price'],
+                                                              product=instance)
                 option_pk_list.append(created_option.pk)
         delete_options_ins = instance.option.exclude(pk__in=option_pk_list)
 
@@ -74,4 +78,5 @@ class ProductSerializers(WritableNestedModelSerializer):
         delete_tag_ins = instance.tag.exclude(pk__in=tag_pk_list)
         for tag_ins in delete_tag_ins:
             tag_ins.delete()
+        print(datetime.now() - start)
         return instance
