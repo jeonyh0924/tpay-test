@@ -1,5 +1,5 @@
 from django.urls import path
-from rest_framework_nested import routers
+from rest_framework import routers
 
 from shop.views import ProductView
 
