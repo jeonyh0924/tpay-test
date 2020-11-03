@@ -16,9 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+from config.yasg import urlpatterns_yasg
 from shop.urls import shop_urlpatterns
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('shop/', include(shop_urlpatterns)),
 ]
+
+urlpatterns += urlpatterns_yasg
