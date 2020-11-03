@@ -1,14 +1,23 @@
 from .base import *
 
-# django - inmemory storage
-DEFAULT_FILE_STORAGE = 'inmemorystorage.InMemoryStorage'
+INSTALLED_APPS += [
+    'django_extensions',
+    'debug_toolbar',
+]
 
+DEBUG = True
 
-PASSWORD_HASHERS = [
-    'django.contrib.auth.hashers.MD5PasswordHasher',
+ALLOWED_HOSTS = [
+    '127.0.0.1',
+    'localhost',
 ]
 
 # django debug toolbar
 INTERNAL_IPS = [
     '127.0.0.1',
+]
+
+
+MIDDLEWARE += [
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]

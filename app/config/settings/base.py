@@ -21,9 +21,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__fil
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '-_oz^o=nqlp6)d7hp$=u+=kwd=&(&wgn%163re!z97)ikr8^#9'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
 ALLOWED_HOSTS = []
 
 # Application definition
@@ -39,9 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'rest_framework',
-    'django_extensions',
     'drf_yasg',
-
 ]
 
 MIDDLEWARE = [
