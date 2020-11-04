@@ -22,6 +22,8 @@ class ProductTest(APITestCase):
 
         for response_data, product in zip(response.data, self.products):
             self.assertEqual(response_data['id'], product.id)
+            for response_option_set, product_option_set in zip(response_data['option_set'], product.option_set.all()):
+                self.assertEqual(response_option_set['id'], product_option_set.id)
 
     def test_create(self):
         """
@@ -60,12 +62,42 @@ class ProductTest(APITestCase):
         self.assertEqual(response.status_code, 201)
         self.fail()
 
+    def test_retrieve(self):
+        response = self.client.get(f'/shop/products/{self.products[0].pk}/')
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.data.get('id'), self.products[0].id)
+
     def test_patch(self):
         data = {
-            "name": "update data",
+            "pk": self.products[0].id,
+            "name": "TestProduct",
+            "option_set": [
+                {
+                    "pk": 1,
+                    "name": "TestOption1",
+                    "price": 1000
+                },
+                {
+                    "pk": 2,
+                    "name": "Edit TestOption2",
+                    "price": 1500
+                },
+                {
+                    "name": "Edit New Option",
+                    "price": 300
+                }
+            ],
             "tag_set": [
                 {
-                    "name": "new tag"
+                    "pk": 1,
+                    "name": "ExistTag"
+                },
+                {
+                    "pk": 2,
+                    "name": "NewTag"
+                },
+                {
+                    "name": "Edit New Tag"
                 }
             ]
         }
