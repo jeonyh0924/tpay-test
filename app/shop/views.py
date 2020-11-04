@@ -4,16 +4,16 @@ from rest_framework.viewsets import ModelViewSet
 
 from shop.models import Product
 from shop.serializers import ProductSerializers
-from datetime import datetime
 
 
 class ProductView(ModelViewSet):
-    queryset = Product.objects.all().prefetch_related('option', 'tag')
+    queryset = Product.objects.all().prefetch_related('option_set', 'tag_set')
     serializer_class = ProductSerializers
 
     def create(self, request, *args, **kwargs):
         kwargs['many'] = isinstance(request.data, list)
-        serializer = self.get_serializer(data=request.data, **kwargs)
+        serializer = self.get_serializer(data=request.data)
+
         serializer.is_valid(raise_exception=True)
         self.perform_create(serializer)
         headers = self.get_success_headers(serializer.data)
