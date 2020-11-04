@@ -19,3 +19,23 @@ cd app
 ./manage.py migrate
 ```
 
+
+### docker compose 
+
+```shell
+# 기존에 동작하고 있는 도커가 있다면
+#docker-compose down
+
+# 시작 //
+# file: tpay-test/
+docker-compose up -d
+
+export DJANGO_SETTINGS_MODULE=config.settings.dev
+
+
+cd app
+
+./manage.py makemigrations
+./manage.py migrate
+./manage.py runserver
+```
