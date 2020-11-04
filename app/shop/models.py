@@ -14,15 +14,9 @@ class Tag(models.Model):
         return self.name
 
 
-# class ProductTag(models.Model):
-#     tag = models.ForeignKey('shop.Tag', related_name='tags', related_query_name='tag', on_delete=models.CASCADE, )
-#     product = models.ForeignKey('shop.Product', related_name='products', related_query_name='product',
-#                                 on_delete=models.CASCADE, )
-#
-
 class Product(models.Model):
     name = models.CharField('상품명', max_length=100)
-    tag = models.ManyToManyField(Tag, blank=True)
+    tag_set = models.ManyToManyField(Tag, blank=True)
 
     def __str__(self):
         return self.name
@@ -31,7 +25,7 @@ class Product(models.Model):
 class ProductOption(models.Model):
     product = models.ForeignKey(
         Product, verbose_name='상품',
-        related_name='option', related_query_name='option', on_delete=models.CASCADE)
+        related_name='option_set', related_query_name='option', on_delete=models.CASCADE)
     name = models.CharField('옵션명', max_length=100)
     price = models.IntegerField('가격')
 
