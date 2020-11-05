@@ -9,7 +9,7 @@
 
 ```shell script
 # git clone git@github.com:jeonyh0924/tpay-test.git
-# cd <폴더 이름>
+# cd <ROOT DIR>
 pyenv virtualenv 3.8.2 <가상환경 이름>
 pyenv local <가상환경 이름>
 
@@ -17,10 +17,6 @@ pip install -r requiremens-dev.txt
 
 export DJANGO_SETTINGS_MODULE=config.settings.dev
 
-cd app
-
-./manage.py makemigrations
-./manage.py migrate
 ```
 
 ### docker compose 
@@ -30,10 +26,8 @@ cd app
 #docker-compose down
 
 # 시작 //
-# file: tpay-test/
+# file: <ROOT DIR>/
 docker-compose up -d
-
-export DJANGO_SETTINGS_MODULE=config.settings.dev
 
 
 cd app
@@ -44,8 +38,14 @@ cd app
 ```
 
 ### testcode
+1. 파이참 인터프리터 설정.
+![pycharm settings 1](./readmeImages/pycharm_settings_1.png)
 
-```shell script
+2. 파이참 프레임워크 설정.
+![pycharm settings 1](./readmeImages/pycharm_settings_2.png)
 
+3. run/debug configuration 설정
+![pycharm settings 1](./readmeImages/pycharm_testcode.png)
 
-```
+4. 테스트코드 실행
+![pycharm settings 1](./readmeImages/pycharm_testcode2.png)
