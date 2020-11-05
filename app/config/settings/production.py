@@ -2,9 +2,9 @@ from .base import *
 
 # test
 ALLOWED_HOSTS = [
-    '127.0.0.1',
-    'localhost',
+    # deploy DNS
 ]
 
+DEBUG = False
 
-DEBUG = True
+WSGI_APPLICATION = 'config.wsgi.application'
