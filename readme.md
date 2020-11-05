@@ -49,3 +49,7 @@ cd app
 
 4. 테스트코드 실행
 ![pycharm settings 1](./readmeImages/pycharm_testcode2.png)
+
+### API 테스트 방법, PostMan URL
+
+- https://documenter.getpostman.com/view/5847490/TVYQ1Z4s
