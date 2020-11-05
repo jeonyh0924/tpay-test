@@ -24,8 +24,7 @@ class ProductView(ModelViewSet):
 
             serializer = self.get_serializer(queryset, many=True)
             cache_data = serializer.data
-            cache.set(cache_key, cache_data, 60 * 60)
-
+            cache.set(cache_key, cache_data, 60)
         return Response(cache_data)
 
     def retrieve(self, request, *args, **kwargs):
@@ -36,5 +35,5 @@ class ProductView(ModelViewSet):
             instance = self.get_object()
             serializer = self.get_serializer(instance)
             cache_data = serializer.data
-            cache.set(cache_key, cache_data, 60 * 60)
+            cache.set(cache_key, cache_data, 60)
         return Response(cache_data)

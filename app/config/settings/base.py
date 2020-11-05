@@ -1,10 +1,13 @@
 import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+ROOT_DIR = os.path.dirname(BASE_DIR)
 
 SECRET_KEY = '-_oz^o=nqlp6)d7hp$=u+=kwd=&(&wgn%163re!z97)ikr8^#9'
 
-ALLOWED_HOSTS = []
+STATIC_DIR = os.path.join(BASE_DIR, 'static')
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(ROOT_DIR, '.static')
 
 # Application definition
 INSTALLED_APPS = [
@@ -49,8 +52,6 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'config.wsgi.application'
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -75,8 +76,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
-STATIC_URL = '/static/'
 
 CACHES = {
     "default": {
