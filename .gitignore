@@ -5,6 +5,9 @@ __pycache__/
 
 # C extensions
 *.so
+.static/
+.idea/
+app/shop/migrations/
 
 # Distribution / packaging
 .Python
