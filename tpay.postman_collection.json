@@ -1,0 +1,134 @@
+{
+	"info": {
+		"_postman_id": "184e8fb8-d529-44a5-80b9-50bf3d045b85",
+		"name": "tpay",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "shop",
+			"item": [
+				{
+					"name": "Product List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/shop/products/",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"shop",
+								"products",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Product Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"TestProduct\",\n    \"option_set\": [\n    ],\n    \"tag_set\": [\n        \n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local}}/shop/products/",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"shop",
+								"products",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Product Retrieve",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/shop/products/1/",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"shop",
+								"products",
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Product Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/shop/products/2/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"shop",
+								"products",
+								"2",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Product Edit",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"pk\": 1,\n    \"name\": \"TestProduct\",\n    \"option_set\": [\n        {\n            \"pk\": 1,\n            \"name\": \"TestOption1\",\n            \"price\": 1000\n        },\n        {\n            \"pk\": 2,\n            \"name\": \"Edit TestOption2\",\n            \"price\": 1500\n        },\n        {\n            \"name\": \"Edit New Option\",\n            \"price\": 300\n        }\n    ],\n    \"tag_set\": [\n        {\n            \"pk\": 1,\n            \"name\": \"update\"\n        },\n        {\n            \"pk\": 2,\n            \"name\": \"NewTag\"\n        },\n        {\n            \"name\": \"Edit New Tag\"\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local}}/shop/products/1/",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"shop",
+								"products",
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
