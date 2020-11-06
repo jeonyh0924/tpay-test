@@ -53,4 +53,9 @@ cd app
 ### API 테스트 방법, PostMan URL
 
 - https://documenter.getpostman.com/view/5847490/TVYQ1Z4s
+
+```shell
+# Root DIR/app
+./manage.py test
+```
 - Postman Export > tpay-test/tpay.postman_collection.json
