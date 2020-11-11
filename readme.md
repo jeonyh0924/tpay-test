@@ -57,6 +57,9 @@ cd app
 ```shell
 # Root DIR/app
 ./manage.py test
+
+# Root dir/app
+pytest
 ```
-```
+
 - Postman Export > tpay-test/tpay.postman_collection.json
