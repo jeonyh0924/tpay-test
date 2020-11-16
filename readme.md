@@ -45,20 +45,16 @@ cd app
 ./manage.py runserver
 ```
 
-### testcode
-1. 파이참 인터프리터 설정.
-![pycharm settings 1](./readmeImages/pycharm_settings_1.png)
-
-2. 파이참 프레임워크 설정.
-![pycharm settings 1](./readmeImages/pycharm_settings_2.png)
-
-3. run/debug configuration 설정
-![pycharm settings 1](./readmeImages/pycharm_testcode.png)
-
-4. 테스트코드 실행
-![pycharm settings 1](./readmeImages/pycharm_testcode2.png)
-
 ### API 테스트 방법, PostMan URL
 
 - https://documenter.getpostman.com/view/5847490/TVYQ1Z4s
+
+```shell
+# Root DIR/app
+./manage.py test
+
+# Root dir/app
+pytest
+```
+
 - Postman Export > tpay-test/tpay.postman_collection.json
