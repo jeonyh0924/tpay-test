@@ -24,6 +24,8 @@ RUN         cp -f   /srv/project/.config/app.nginx \
 RUN         ln -sf  /etc/nginx/sites-available/app.nginx \
                     /etc/nginx/sites-enabled/app.nginx
 
+ENV         DJANGO_SETTINGS_MODULE  config.settings
+
 RUN         cp -f   /srv/project/.config/supervisord.conf \
                     /etc/supervisor/conf.d/
 CMD         supervisord -n
