@@ -13,7 +13,7 @@ DEBUG = True
 
 # Application definition
 INSTALLED_APPS = [
-    'shop',
+    'shop.apps.ShopConfig',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -27,7 +27,7 @@ INSTALLED_APPS = [
     'django_extensions',
     'debug_toolbar',
 ]
-ALLOWED_HOSTS = [ ]
+ALLOWED_HOSTS = []
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

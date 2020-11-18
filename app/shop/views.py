@@ -8,6 +8,7 @@ from shop.serializers import ProductSerializers
 LIST_CACHE_MAX_AGE = 60 * 60
 RETRIEVE_CACHE_MAX_AGE = 60 * 60
 
+
 class ProductView(ModelViewSet):
     queryset = Product.objects.all().prefetch_related('option_set', 'tag_set')
     serializer_class = ProductSerializers
