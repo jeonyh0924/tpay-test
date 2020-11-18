@@ -1,12 +1,13 @@
 import json
+
+import pytest
 from django.urls import reverse
 from model_bakery import baker
 from rest_framework.test import APITestCase
-
-from shop import views
 from shop.models import Product
 
 
+@pytest.mark.django_db
 class ProductTest(APITestCase):
     def setUp(self) -> None:
         self.products = baker.make('shop.Product', _quantity=2, )
@@ -32,7 +33,6 @@ class ProductTest(APITestCase):
 
         # error: AssertionError: 5 != 1 - debug
         # error: FAILED shop/tests.py::ProductTest::test_list - AssertionError: 5 != 6 - pytest
-
 
     def test_create(self):
         """
@@ -148,7 +148,6 @@ class ProductTest(APITestCase):
                 self.assertEqual(request_tag.get('price'), response_tag.get('price'))
             except AssertionError:
                 print('tag update - assertion error')
-
 
     def test_delete(self):
         ins = Product.objects.filter(id=self.products[0].pk)
