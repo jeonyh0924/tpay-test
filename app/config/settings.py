@@ -27,10 +27,7 @@ INSTALLED_APPS = [
     'django_extensions',
     'debug_toolbar',
 ]
-ALLOWED_HOSTS = [
-    '127.0.0.1',
-    'localhost',
-]
+ALLOWED_HOSTS = [ ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -85,16 +82,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
-CACHES = {
-    "default": {
-        "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://127.0.0.1:6379/1",
-        "OPTIONS": {
-            "CLIENT_CLASS": "django_redis.client.DefaultClient",
-        }
-    }
-}
 
 # django debug toolbar
 INTERNAL_IPS = [
