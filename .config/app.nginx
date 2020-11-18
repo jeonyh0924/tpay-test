@@ -1,0 +1,17 @@
+server {
+    listen 80;
+    server_name localhost;
+    charset utf-8;
+    client_max_body_size 128M;
+
+    location / {
+        # uwsgi 와의 연결에 unix 소켓을 사용
+        # "/tmp/app.sock" 파일을 사
+        uwsgi_pass  unix:///tmp/app.sock;
+        include     uwsgi_params;
+    }
+
+    location /static/ {
+        alias /srv/tpay/.static/;
+    }
+}
