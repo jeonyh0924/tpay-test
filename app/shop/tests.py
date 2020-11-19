@@ -1,12 +1,12 @@
 import json
+import pytest
 from django.urls import reverse
 from model_bakery import baker
 from rest_framework.test import APITestCase
-
-from shop import views
-from shop.models import Product
+from shop.models import Product, Tag
 
 
+@pytest.mark.django_db
 class ProductTest(APITestCase):
     def setUp(self) -> None:
         self.products = baker.make('shop.Product', _quantity=2, )
@@ -32,7 +32,6 @@ class ProductTest(APITestCase):
 
         # error: AssertionError: 5 != 1 - debug
         # error: FAILED shop/tests.py::ProductTest::test_list - AssertionError: 5 != 6 - pytest
-
 
     def test_create(self):
         """
@@ -84,6 +83,44 @@ class ProductTest(APITestCase):
             self.assertEqual(qs_options.id, response_data_options.get('id'))
             self.assertEqual(qs_options.name, response_data_options.get('name'))
             self.assertEqual(qs_options.price, response_data_options.get('price'))
+
+    def test_create_tag_unique_case(self):
+        data = {
+            'name': 'TestProduct',
+            'option_set': [
+                {
+                    'name': 'TestOption1',
+                    'price': 1000
+                },
+                {
+                    'name': 'TestOption2',
+                    'price': 500
+                },
+                {
+                    'name': 'TestOption3',
+                    'price': 0
+                }
+            ],
+            'tag_set': [
+                {
+                    'pk': 1,
+                    'name': 'ExistTag'
+                },
+                {
+                    'name': 'NewTag'
+                }
+            ]
+        }
+
+        Tag.objects.create(name='NewTag')
+        Tag.objects.create(name='ExistTag')
+        response = self.client.post(reverse('Products-list'), json.dumps(data), content_type="application/json")
+
+        self.assertEqual(response.status_code, 400)
+        exists_tag_name = data['tag_set'][1]['name']
+        exists_tag_ins = Tag.objects.get(name=exists_tag_name)
+        self.assertTrue(exists_tag_ins)
+
 
     def test_retrieve(self):
         response = self.client.get(reverse('Products-detail', kwargs={"pk": self.products[0].pk}))

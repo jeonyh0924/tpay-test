@@ -16,18 +16,16 @@
 ## Setup
 
 ```shell script
-# git clone git@github.com:jeonyh0924/tpay-test.git
+# git clone git@github.com:jeonyh0924/tpay-test.git <ROOT DIR NAME>
 # cd <ROOT DIR>
-pyenv virtualenv 3.8.2 <가상환경 이름>
-pyenv local <가상환경 이름>
 
-pip install -r requiremens-dev.txt
-
-export DJANGO_SETTINGS_MODULE=config.settings.dev
+docker build -t tpay -f Dockerfile .
+docker run --rm -it -p 8000:80 --name tpay tpay
 
 ```
 
-### docker compose 
+
+## ~~docker compose~~
 
 ```shell script
 # 기존에 동작하고 있는 docker-compose 가 있다면
