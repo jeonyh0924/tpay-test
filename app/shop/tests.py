@@ -1,5 +1,4 @@
 import json
-
 import pytest
 from django.urls import reverse
 from model_bakery import baker
@@ -122,6 +121,7 @@ class ProductTest(APITestCase):
         exists_tag_ins = Tag.objects.get(name=exists_tag_name)
         self.assertTrue(exists_tag_ins)
 
+
     def test_retrieve(self):
         response = self.client.get(reverse('Products-detail', kwargs={"pk": self.products[0].pk}))
         self.assertEqual(response.status_code, 200)
@@ -185,6 +185,7 @@ class ProductTest(APITestCase):
                 self.assertEqual(request_tag.get('price'), response_tag.get('price'))
             except AssertionError:
                 print('tag update - assertion error')
+
 
     def test_delete(self):
         ins = Product.objects.filter(id=self.products[0].pk)
