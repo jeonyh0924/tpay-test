@@ -1,3 +1,5 @@
+[![codecov](https://codecov.io/gh/jeonyh0924/tpay-test/branch/main/graph/badge.svg?token=Q8JR7ZLHIO)](https://codecov.io/gh/jeonyh0924/tpay-test)
+
 # Contents
 1. Requirements
 2. Set up
