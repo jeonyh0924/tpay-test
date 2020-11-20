@@ -7,9 +7,12 @@ omit =
     app/config/asgi.py
     app/config/wsgi.py
     app/*/migrations/*
+    app/*/migrations/*
 
 [report]
 exclude_lines =
     def __str__
+    def __repr__
     if settings.DEBUG
     return super()
+    raise AssertionError
