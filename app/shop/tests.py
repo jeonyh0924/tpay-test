@@ -117,10 +117,14 @@ class ProductTest(APITestCase):
         response = self.client.post(reverse('Products-list'), json.dumps(data), content_type="application/json")
 
         self.assertEqual(response.status_code, 400)
+        # 400 에러 이유가 unique 인지
+        for tag in response.data['tag_set']:
+            if tag:
+                self.assertTrue('unique' in tag.get('name')[0])
+
         exists_tag_name = data['tag_set'][1]['name']
         exists_tag_ins = Tag.objects.get(name=exists_tag_name)
         self.assertTrue(exists_tag_ins)
-
 
     def test_retrieve(self):
         response = self.client.get(reverse('Products-detail', kwargs={"pk": self.products[0].pk}))
@@ -186,6 +190,53 @@ class ProductTest(APITestCase):
             except AssertionError:
                 print('tag update - assertion error')
 
+    def test_patch_Tag_Unique_case(self):
+        Tag.objects.create(name='NewTag')
+        Tag.objects.create(name='ExistTag')
+
+        data = {
+            "pk": 1,
+            "name": "TestProduct",
+            "option_set": [
+                {
+                    "pk": 1,
+                    "name": "TestOption1",
+                    "price": 1000
+                },
+                {
+                    "pk": 2,
+                    "name": "Edit TestOption2",
+                    "price": 1500
+                },
+                {
+                    "name": "Edit New Option",
+                    "price": 300
+                }
+            ],
+            "tag_set": [
+                {
+                    "pk": 1,
+                    "name": "ExistTag"
+                },
+                {
+                    "pk": 2,
+                    "name": "NewTag"
+                },
+                {
+                    "name": "Edit New Tag"
+                }
+            ]
+        }
+
+        response = self.client.patch(
+            reverse('Products-detail', args={self.products[0].pk}), json.dumps(data),
+            content_type="application/json")
+
+        self.assertEqual(response.status_code, 400)
+        # 400 에러 이유가 unique 인지
+        for tag in response.data['tag_set']:
+            if tag:
+                self.assertTrue('unique' in tag.get('name')[0])
 
     def test_delete(self):
         ins = Product.objects.filter(id=self.products[0].pk)
