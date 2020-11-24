@@ -5,8 +5,11 @@ server {
     client_max_body_size 128M;
 
     location / {
-        uwsgi_pass  unix:///tmp/app.sock;
-        include     uwsgi_params;
+        # uWSGI -> gunicorn
+#        uwsgi_pass  unix:///tmp/app.sock;
+#        include     uwsgi_params;
+        include proxy_params;
+        proxy_pass http://unix:/tmp/gunicorn.sock;
     }
 
     location /static/ {
