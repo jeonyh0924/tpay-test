@@ -7,7 +7,7 @@ RUN         apt -y update
 RUN         apt -y dist-upgrade
 
 RUN         apt -y install gcc nginx supervisor
-RUN         pip3 install uwsgi
+RUN         pip3 install gunicorn
 
 COPY        requirements.txt /tmp/
 RUN         pip3 install -r /tmp/requirements.txt
